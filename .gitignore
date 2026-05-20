@@ -6,6 +6,17 @@ __pycache__
 db.sqlite3
 media
 
+# User-uploaded profile pictures
+static/profile_pic/CustomerProfilePic/*
+static/profile_pic/StaffProfilePic/*
+!static/profile_pic/CustomerProfilePic/about.jpg
+!static/profile_pic/CustomerProfilePic/bike.jpg
+!static/profile_pic/CustomerProfilePic/download.png
+!static/profile_pic/CustomerProfilePic/DSC_7576332.JPG
+!static/profile_pic/CustomerProfilePic/passport.png
+!static/profile_pic/CustomerProfilePic/passport_ThycaxD.png
+!static/profile_pic/StaffProfilePic/download.png
+
 # Backup files #
 *.bak
 

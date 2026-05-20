@@ -1,0 +1,76 @@
+{% extends 'staff/staffbase.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <style>
+    .profile-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 20%;
+      margin-bottom: 15px;
+    }
+
+    .profile-info {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 8px;
+      text-align:center;
+      padding: 5px 15px;
+    }
+
+    .info-container {
+      text-align: left;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .edit-button {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 20px 30px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s;
+      margin-top: 15px;
+    }
+
+    .edit-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<br><br>
+<div class="profile-container">
+  <br><br>
+  {% if staff.profile_pic %}
+  <img class="profile-img" src="{% static staff.profile_pic.name %}" alt="Staff Profile Picture">
+  {% else %}
+  <img class="profile-img" src="{% static 'images/staff.png' %}" alt="Staff Profile Picture">
+  {% endif %}
+  <div class="info-container">
+    <p class="profile-info"><b>Name:</b> {{ staff }}</p>
+    <p class="profile-info"><b>Mobile:</b> {{ staff.mobile }}</p>
+    <p class="profile-info"><b>Email:</b> {{ staff.email }}</p>
+    <p class="profile-info"><b>Skill:</b> {{ staff.skill }}</p>
+    <p class="profile-info"><b>Address:</b> {{ staff.address }}</p>
+  </div>
+  
+  <a href="/edit-staff-profile" class="edit-button">Edit Profile</a>
+  <br><br>
+</div>
+
+{% endblock content %}
+
