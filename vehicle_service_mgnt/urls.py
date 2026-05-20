@@ -1,8 +1,6 @@
 from django.contrib import admin as django_admin
 from django.urls import include, path
-
 from vehicle import views
-
 
 urlpatterns = [
     path("admin/", django_admin.site.urls),

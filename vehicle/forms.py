@@ -34,6 +34,11 @@ class StaffSalaryForm(forms.Form):
 
 
 class RequestForm(forms.ModelForm):
+    vehicle_no = forms.CharField(
+        max_length=20,
+        widget=forms.TextInput(attrs={'placeholder': 'Vehicle Number'}),
+    )
+
     class Meta:
         model=models.Request
         fields=['category','vehicle_no','vehicle_name','vehicle_model','vehicle_brand','problem_description']
