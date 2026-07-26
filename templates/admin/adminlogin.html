@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 {% load widget_tweaks %}
 {% load static %}
 <html lang="en">
@@ -80,6 +80,7 @@
             <p>Please enter your login details.</p>
             {% render_field form.username class="form-control" placeholder="Username" %}
             {% render_field form.password class="form-control" placeholder="Password" %}
+            <p style="text-align:right; margin: 0 0 10px;"><a href="{% url 'forgot-password' %}" style="color:#66fcf1;"><b>Forgot Password?</b></a></p>
             <input type="submit" value="Login">
         </form>
     </div>
@@ -87,4 +88,6 @@
    
 </body>
 </html>
+
+
 

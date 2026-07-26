@@ -113,3 +113,51 @@ var lineChart = new Chart(ctx, {
 		bezierCurve: false,
 	}
 })
+// Navbar current-page search
+(function () {
+  function normalize(value) {
+    return (value || '').toString().toLowerCase().trim();
+  }
+
+  function getSearchTargets() {
+    var tableRows = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+    if (tableRows.length) {
+      return tableRows;
+    }
+    return Array.prototype.slice.call(document.querySelectorAll('.menu-card, .order-card, .counter'));
+  }
+
+  function filterPage(query) {
+    var words = normalize(query).split(/\s+/).filter(Boolean);
+    var targets = getSearchTargets();
+
+    targets.forEach(function (target) {
+      var text = normalize(target.innerText || target.textContent);
+      var visible = words.length === 0 || words.every(function (word) {
+        return text.indexOf(word) !== -1;
+      });
+      target.style.display = visible ? '' : 'none';
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var searchForm = document.querySelector('.navbar-search');
+    if (!searchForm) {
+      return;
+    }
+
+    var searchInput = searchForm.querySelector('input');
+    if (!searchInput) {
+      return;
+    }
+
+    searchForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      filterPage(searchInput.value);
+    });
+
+    searchInput.addEventListener('input', function () {
+      filterPage(searchInput.value);
+    });
+  });
+})();

@@ -1,132 +1,114 @@
-{% extends 'admin/adminbase.html' %}
+﻿{% extends 'admin/adminbase.html' %}
 {% load static %}
 {% block content %}
 
+<style>
+  a:link, a:hover {
+    text-decoration: none;
+  }
 
+  .card-page-wrap {
+    padding: 95px 24px 32px 124px;
+  }
 
-<head>
+  .card-page-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(190px, 1fr));
+    gap: 24px;
+  }
 
-  <style type="text/css">
-    a:link {
-      text-decoration: none;
+  .menu-card {
+    min-height: 168px;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px 18px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  .menu-card:hover {
+    color: #fff;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+  }
+
+  .menu-card i {
+    color: #fff;
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .menu-card h3 {
+    color: #fff;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+  .menu-card p {
+    color: rgba(255, 255, 255, .92);
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .card-purple { background: #4834d4; }
+  .card-orange { background: #f0932b; }
+  .card-green { background: #6ab04c; }
+  .card-red { background: #eb4d4b; }
+  .card-blue { background: #4099ff; }
+
+  @media only screen and (max-width: 1200px) {
+    .card-page-grid {
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .card-page-wrap {
+      padding: 90px 16px 24px 16px;
     }
 
-    h6 {
-      color: white;
-      font-size: 0.90em;
+    .card-page-grid {
+      grid-template-columns: 1fr;
     }
+  }
+</style>
 
-    .order-card {
-      color: #fff;
-    }
-
-    .bg-c-blue {
-      background: linear-gradient(45deg, #4099ff, #73b4ff);
-    }
-
-    .bg-c-green {
-      background: linear-gradient(45deg, #2ed8b6, #59e0c5);
-    }
-
-    .bg-c-yellow {
-      background: linear-gradient(45deg, #FFB64D, #ffcb80);
-    }
-
-    .bg-c-pink {
-      background: linear-gradient(45deg, #FF5370, #ff869a);
-    }
-
-
-    .card {
-      border-radius: 5px;
-      -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      border: none;
-      margin-bottom: 30px;
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .card .card-block {
-      padding: 25px;
-    }
-
-    .order-card i {
-      font-size: 26px;
-    }
-
-    .f-left {
-      float: left;
-    }
-
-    .f-right {
-      float: right;
-    }
-    h6{
-      size:20;
-    }
-  </style>
-</head>
-
-<body>
-
-  <br><br><br><br><br>
-  <div style="margin-left:100px;" class="container">
-    <div class="row">
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-blue order-card">
-          <div class="card-block">
-            <a href="/admin-view-request">
-              <h6 class="m-b-20">View All Request</h6>
-            </a>
-            <h2 class="text-right"><i class="fas fa-eye f-left"></i></h2>
-            <br>
-          </div>
+<div class="card-page-wrap">
+  <div class="card-page-grid">
+      <a class="menu-card card-purple" href="/admin-view-request">
+        <div>
+          <i class="fas fa-eye"></i>
+          <h3>View Requests</h3>
+          <p>See all service requests</p>
         </div>
-      </div>
-
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-green order-card">
-          <div class="card-block">
-            <a href="/admin-add-request">
-              <h6 class="m-b-20">Make Request</h6>
-            </a>
-            <h2 class="text-right"><i class="fas fa-plus-circle f-left"></i></h2>
-            <br>
-          </div>
+      </a>      <a class="menu-card card-orange" href="/admin-add-request">
+        <div>
+          <i class="fas fa-plus-circle"></i>
+          <h3>Make Request</h3>
+          <p>Create request record</p>
         </div>
-      </div>
-
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-yellow order-card">
-          <div class="card-block">
-            <a href="/admin-approve-request">
-              <h6 class="m-b-20">Approve Request</h6>
-            </a>
-            <h2 class="text-right"><i class="fas fa-check-circle f-left"></i></h2>
-            <br>
-          </div>
+      </a>      <a class="menu-card card-green" href="/admin-approve-request">
+        <div>
+          <i class="fas fa-check-circle"></i>
+          <h3>Approve Request</h3>
+          <p>Approve pending jobs</p>
         </div>
-      </div>
-
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-pink order-card">
-          <div class="card-block">
-            <a href="/admin-view-service-cost">
-              <h6 class="m-b-20">Service Cost</h6>
-            </a>
-              <h2 class="text-right"><i class="fas fa-rupee-sign f-left"></i></h2>
-            <br>
-          </div>
+      </a>      <a class="menu-card card-red" href="/admin-view-service-cost">
+        <div>
+          <i class="fas fa-rupee-sign"></i>
+          <h3>Service Cost</h3>
+          <p>Manage service cost</p>
         </div>
-      </div>
-    </div>
+      </a>  </div>
+</div>
 
-  </div>
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-
-  </script>
-</body>
 {% endblock content %}
+
 

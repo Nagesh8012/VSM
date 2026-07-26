@@ -1,0 +1,48 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify OTP</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'fontawesome-free/css/all.min.css' %}">
+  <style>
+    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: url('{% static "images/image.png" %}') no-repeat center center/cover; font-family: Roboto, Arial, sans-serif; padding: 20px; }
+    .reset-card { width: 450px; max-width: 100%; background: rgba(255, 255, 255, 0.12); border-radius: 15px; backdrop-filter: blur(10px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); overflow: hidden; color: #fff; }
+    .reset-bar { height: 8px; background: #4834d4; }
+    .reset-body { padding: 30px; text-align: center; }
+    .reset-icon { width: 58px; height: 58px; margin: 0 auto 16px; border-radius: 16px; background: rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; color: #66fcf1; font-size: 25px; }
+    h1 { margin: 0 0 10px; font-size: 28px; }
+    p { color: #e8e8e8; line-height: 1.5; margin: 0 0 22px; }
+    label { display: block; text-align: left; color: #fff; font-size: 13px; font-weight: bold; letter-spacing: .08em; margin: 14px 0 8px; text-transform: uppercase; }
+    input { width: 100%; padding: 12px; border: 1px solid rgba(255,255,255,.35); border-radius: 5px; outline: none; box-sizing: border-box; background: rgba(255,255,255,.20); color: #fff; font-size: 15px; }
+    input::placeholder { color: #eee; }
+    input:focus { border-color: #66fcf1; box-shadow: 0 0 0 3px rgba(102, 252, 241, .18); }
+    button { width: 100%; background: #4834d4; color: #fff; border: 0; border-radius: 5px; padding: 13px 18px; margin-top: 20px; font-weight: bold; cursor: pointer; transition: .3s; }
+    button:hover { background: #3724bd; }
+    .message { border-radius: 6px; padding: 10px; margin-bottom: 16px; text-align: left; font-size: 14px; }
+    .error { background: rgba(235, 77, 75, .22); color: #fff; border: 1px solid rgba(235, 77, 75, .5); }
+    .debug { color: #ffd2d2; font-size: 12px; word-break: break-word; }
+    a { color: #66fcf1; font-weight: bold; text-decoration: none; }
+    .back-link { margin-top: 18px; color: #ddd; }
+  </style>
+</head>
+<body>
+  <main class="reset-card">
+    <div class="reset-bar"></div>
+    <div class="reset-body">
+      <div class="reset-icon"><i class="fas fa-shield-alt"></i></div>
+      <h1>Verify OTP</h1>
+      <p>Enter the OTP you received on your registered email.</p>
+            {% if error %}<div class="message error">{{ error }}</div>{% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <label for="otp">OTP sent to {{ email }}</label>
+        <input id="otp" name="otp" type="text" placeholder="Enter 6 digit OTP" maxlength="6" required>
+        <button type="submit">Verify OTP</button>
+      </form>
+      <div class="back-link"><a href="/forgot-password/">Send OTP again</a></div>
+    </div>
+  </main>
+</body>
+</html>
