@@ -7,9 +7,6 @@ urlpatterns = [
     path("", views.home_view, name=""),
     path("afterlogin", views.afterlogin_view, name="afterlogin"),
     path("logout/", views.logout_view, name="logout"),
-    path("forgot-password/", views.forgot_password_view, name="forgot-password"),
-    path("verify-reset-otp/", views.verify_reset_otp_view, name="verify-reset-otp"),
-    path("set-new-password/", views.set_new_password_view, name="set-new-password"),
     path("aboutus", views.aboutus_view),
     path("contactus", views.contactus_view),
     path("", include("customer.urls")),
@@ -19,6 +16,7 @@ urlpatterns = [
     path("api/staff/", include("staff.api_urls")),
     path("api/admin/", include("admin.api_urls")),
 ]
+
 
 
 
